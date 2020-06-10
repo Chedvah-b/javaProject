@@ -1,0 +1,135 @@
+package simpleUnitTests;
+
+import java.awt.Color;
+
+import org.junit.Test;
+
+import elements.SpotLight;
+import geometries.Sphere;
+import geometries.Triangle;
+import primitives.Material;
+import primitives.Point3D;
+import primitives.Vector;
+import renderer.ImageWriter;
+import renderer.Render;
+import scene.Scene;
+
+public class Stage10 {
+
+	@Test
+	public void recursiveTest1(){
+		
+		Scene scene = new Scene();
+		scene.setscreenDistance(200);
+		
+		Sphere sphere = new Sphere(new Material (),new Color(0,0, 100), 500, new Point3D(0.0, 0.0, -1000));	
+		Material material = new Material();		
+		material.setnShininess(20); 
+		material.setKt(0.5);
+		sphere.setMaterial(new Material(material));
+		scene.addGeometry(sphere);
+		
+		Sphere sphere2 = new Sphere(new Material (),new Color (100, 20, 20), 250, new Point3D(0.0, 0.0, -1000));
+		material.setKt(0);	
+		sphere2.setMaterial(new Material(material));
+		scene.addGeometry(sphere2);
+
+		scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(-200, -200, -150), 
+							   0.1, 0.00001, 0.000005,  new Vector(2, 2, -3))); // NOW
+				
+		ImageWriter imageWriter = new ImageWriter("Recursive Test1", 500, 500, 500, 500);
+		
+		Render render = new Render( scene, imageWriter);
+		
+		render.renderImage();
+		//render.printGrid(50);
+		imageWriter.writeToimage();
+		
+	}
+	
+	
+	
+	@Test
+	public void recursiveTest2(){
+		
+		Scene scene = new Scene();
+		scene.setscreenDistance(200);
+		
+		Sphere sphere = new Sphere(new Material (),Color.RED, 500, new Point3D(0.0, 0.0, -1000));
+		Material material = new Material();
+		material.setnShininess(20);
+		material.setKt(0.5);
+		sphere.setMaterial(new Material(material));	
+		scene.addGeometry(sphere);
+		
+		Sphere sphere2 = new Sphere(new Material (),Color.BLUE, 250, new Point3D(0.0, 0.0, -1000));
+		material.setKt(0);
+		sphere2.setMaterial(new Material(material));
+		scene.addGeometry(sphere2);
+		
+		scene.addLight(new SpotLight(new Color(255, 100, 100), new Point3D(-200, -200, -150), 
+					    0.1, 0.00001, 0.000005, new Vector(2, 2, -3)));
+			
+		ImageWriter imageWriter = new ImageWriter("Recursive Test2", 500, 500, 500, 500);
+		
+		Render render = new Render(scene, imageWriter);
+		
+		render.renderImage();
+		//render.printGrid(50);
+		imageWriter.writeToimage();
+	}
+	
+	
+	@Test
+	public void recursiveTest3(){
+		
+		Scene scene = new Scene();
+		scene.setscreenDistance(200);
+		Sphere sphere = new Sphere(new Material (),new Color(0, 0, 100), 300, new Point3D(-550, -500, -1000));
+		Material material = new Material();
+		material.setnShininess(20); 
+		material.setKt(0.5);
+		sphere.setMaterial(new Material(material));
+		scene.addGeometry(sphere);
+		
+		Sphere sphere2 = new Sphere(new Material (),new Color(100, 20, 20), 150, new Point3D(-550, -500, -1000));
+		Material material2 = new Material();
+		material2.setnShininess(20);
+		material2.setKt(0);		
+		sphere2.setMaterial(new Material(material2));
+		scene.addGeometry(sphere2);
+		
+		Triangle triangle = new Triangle(new Material (),new Color(20, 20, 20), new Point3D(  1500, -1500, -1500),
+				 new Point3D( -1500,  1500, -1500),
+				 new Point3D(  200,  200, -375));
+
+		Triangle triangle2 = new Triangle(new Material (),new Color(20, 20, 20), new Point3D(  1500, -1500, -1500),
+				  new Point3D( -1500,  1500, -1500),
+				  new Point3D( -1500, -1500, -1500));
+
+		
+	
+		Material material3 = new Material();		
+		material3.setKr(1);		
+		triangle.setMaterial(new Material(material3));
+		
+		Material material4 = new Material();		
+		material4.setKr(0.5);		
+		triangle2.setMaterial(new Material(material4));
+		
+		scene.addGeometry(triangle);
+		scene.addGeometry(triangle2);
+
+
+		scene.addLight(new SpotLight(new Color(255, 100, 100),  new Point3D(200, 200, -150), 
+				   0.1, 0.00001, 0.000005,  new Vector(-2, -2, -3)));
+	
+		ImageWriter imageWriter = new ImageWriter("Recursive Test3", 500, 500, 500, 500);
+		
+		Render render = new Render( scene, imageWriter);
+		render.renderImage();
+		//render.printGrid(50);
+		imageWriter.writeToimage();		
+	}
+
+}

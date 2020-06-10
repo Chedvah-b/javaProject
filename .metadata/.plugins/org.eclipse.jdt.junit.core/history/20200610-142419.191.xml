@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TriangleTest" project="miniProject" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="simpleUnitTests.TriangleTest" time="0.066">
+    <testcase name="testTriangleIntersections" classname="simpleUnitTests.TriangleTest" time="0.065"/>
+    <testcase name="testGetNormal" classname="simpleUnitTests.TriangleTest" time="0.001"/>
+  </testsuite>
+</testrun>
